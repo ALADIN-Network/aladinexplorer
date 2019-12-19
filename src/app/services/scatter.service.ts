@@ -17,7 +17,7 @@ export class ScatterService {
       blockchain: 'ala',
       host: 'api1.aladublin.io',
       port: 443,
-      chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+      chainId: 'bb114c767368dd78d95a097a4c14a6e0235d20186f0962b10a7a77ef50a5f50f'
     };
     if (this.scatter) {
       this.ala = this.scatter.ala(this.network, Ala, {chainId: this.network.chainId}, 'https');

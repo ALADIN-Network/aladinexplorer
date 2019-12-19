@@ -41,7 +41,7 @@ export class SidenavComponent implements OnInit {
         icon: 'list_alt',
         link: '/transactions',
         name: this.translate.instant('Transactions')
-      },
+      }/*,
       {
         icon: 'settings',
         link: '/settings',
@@ -58,7 +58,7 @@ export class SidenavComponent implements OnInit {
         external: true,
         link: environment.votingUrl,
         name: this.translate.instant('Voting')
-      }
+      }*/
     ];
   }
 

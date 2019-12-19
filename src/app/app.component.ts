@@ -12,7 +12,7 @@ declare let ga: Function;
 })
 
 export class AppComponent {
-  title = 'ALADIN Explorer';
+  title = 'Aladin Explorer';
   @LocalStorage()
   language: any;
 

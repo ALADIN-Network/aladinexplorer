@@ -5,7 +5,7 @@ export const environment = {
   appName: 'Telos Testnet Explorer',
   logoUrl: '/assets/logo.png',
   blockchainUrl: 'https://testnet.ala.miami',
-  chainId: 'e17615decaecd202a365f4c029f206eee98511979de8a5756317e2469f2289e3',
+  chainId: 'bb114c767368dd78d95a097a4c14a6e0235d20186f0962b10a7a77ef50a5f50f',
   showAds: false,
   tokensUrl: 'https://raw.githubusercontent.com/alacafe/ala-airdrops/master/tokens.json',
   tickerUrl: 'https://api.coinmarketcap.com/v2/ticker/1765/',
