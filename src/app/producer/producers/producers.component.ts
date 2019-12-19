@@ -90,6 +90,7 @@ export class ProducersComponent implements OnInit {
 export const PRODUCERS_COLUMNS = [
   'position',
   'owner',
+  // 'buttontd',
   'url',
   'numVotes',
   'votes',

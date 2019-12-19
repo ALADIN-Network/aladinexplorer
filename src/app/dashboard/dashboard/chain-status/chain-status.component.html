@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>{{ 'Head Block #' | translate }}:</td>
-        <td><a [routerLink]="['/blocks',status.head_block_num]">{{status.head_block_num}}</a></td>
+        <td><a style="color: #52c41a;" [routerLink]="['/blocks',status.head_block_num]">{{status.head_block_num}}</a></td>
       </tr>
       <tr>
         <td>{{ 'Head Block Producer' | translate }}:</td>
@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <td>{{ 'Last Irreversible Block #' | translate }}:</td>
-        <td><a [routerLink]="['/blocks',status.last_irreversible_block_num]">{{status.last_irreversible_block_num}}</a></td>
+        <td><a style="color: #52c41a;" [routerLink]="['/blocks',status.last_irreversible_block_num]">{{status.last_irreversible_block_num}}</a></td>
       </tr>
     </table>
   </mat-card-content>

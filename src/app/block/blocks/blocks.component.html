@@ -13,7 +13,7 @@
       <ng-container matColumnDef="block_num">
         <th mat-header-cell *matHeaderCellDef>{{ 'Block Number' | translate }}</th>
         <td mat-cell *matCellDef="let block">
-          <a [routerLink]="['/blocks',block.block_num]">{{block.block_num}}</a>
+          <a style="color: #52c41a;" [routerLink]="['/blocks',block.block_num]">{{block.block_num}}</a>
         </td>
       </ng-container>
       <ng-container matColumnDef="timestamp">
