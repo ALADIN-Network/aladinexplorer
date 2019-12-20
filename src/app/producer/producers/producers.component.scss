@@ -1,3 +1,9 @@
-.mat-row:nth-child(-n+21) {
-    background-color: #f3d2d0;
+// .mat-row:nth-child(-n+21) {
+    //  background-color: #f3d2d0;
+// }
+.mat-stroked-button{
+    background-color: #f3d2d0;    
+}
+.top21::before {
+    content: "Top 21";
 }
