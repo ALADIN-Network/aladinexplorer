@@ -1,8 +1,8 @@
-<mat-toolbar color="primary">
-  <h1 class="mat-headline">
-    {{ 'Blocks' | translate }}
-  </h1>
-</mat-toolbar>
+<!-- <mat-toolbar color="primary"> -->
+  <!-- <h1 class="mat-headline"> -->
+    <!-- {{ 'Blocks' | translate }} -->
+  <!-- </h1> -->
+<!-- </mat-toolbar> -->
 <div style="margin:10px;">
   <div class="table-container mat-elevation-z1" *ngIf="blocks$ | async as blocks; else loading">
     <table mat-table [dataSource]="blocks" style="border:none;">

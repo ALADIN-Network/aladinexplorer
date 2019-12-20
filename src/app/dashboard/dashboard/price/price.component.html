@@ -6,7 +6,7 @@
   <mat-card-content>
     <div class="table-container">
       <table>
-        <ng-container *ngIf="price.quotes?.USD as usd">
+        <!-- <ng-container *ngIf="price.quotes?.USD as usd">
           <tr>
             <td>Price</td>
             <td>{{usd.price | currency:'USD'}} USD</td>
@@ -40,7 +40,7 @@
               <app-price-trending [percentage]="usd.percent_change_7d"></app-price-trending>
             </td>
           </tr>
-        </ng-container>
+        </ng-container> -->
         <tr>
           <td>Circulating Supply</td>
           <td>{{price.circulating_supply | number}} {{token}}</td>
