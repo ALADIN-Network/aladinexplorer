@@ -4,6 +4,9 @@
 .mat-stroked-button{
     background-color: #f3d2d0;    
 }
-.top21::before {
+.mat-row .top21::before {
+    content: "Standby";
+}
+.mat-row:nth-child(-n+21) .top21::before {
     content: "Top 21";
 }

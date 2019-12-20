@@ -55,3 +55,16 @@ table {
 header .brand span{
   color: #333333 !important;
 }
+
+table.mat-table,
+th.mat-header-cell {
+    text-align: center !important;
+}
+
+.mat-list-item.active{
+  background-color: #a72424 !important;
+}
+
+.mat-list-item.active .mat-list-item-content{
+  color: #ffffff;
+}
