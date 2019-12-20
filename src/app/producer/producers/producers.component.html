@@ -23,13 +23,12 @@
           <a [routerLink]="['/producers',producer.owner]">{{producer.owner}}</a>
         </td>
       </ng-container>
-      <!-- <ng-container matColumnDef="buttontd">
+      <ng-container matColumnDef="buttontd">
         <th mat-header-cell *matHeaderCellDef>{{ 'Status' | translate }}</th>
         <td mat-cell *matCellDef="let status">
-          <a [routerLink]="['/producers',producer.owner]">{{producer.owner}}</a> 
           <span class="top21 mat-stroked-button mat-accent">Top 21</span>
         </td>
-      </ng-container> -->
+      </ng-container>
       <ng-container matColumnDef="url">
         <th mat-header-cell *matHeaderCellDef>{{ 'Url' | translate }}</th>
         <td mat-cell *matCellDef="let producer">

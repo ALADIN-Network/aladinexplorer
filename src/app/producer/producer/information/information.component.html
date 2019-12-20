@@ -1,6 +1,6 @@
 <mat-card *ngIf="producer">
   <mat-card-title>
-    {{ 'Producer' | translate }}
+    {{ 'Producer Information' | translate }}
   </mat-card-title>
   <mat-card-content class="table-container">
     <table>
@@ -9,7 +9,7 @@
         <td>{{producer.bpJson.org.candidate_name}}</td>
       </tr>
       <tr *ngIf="producer.account">
-        <td>{{ 'Account' | translate }}:</td>
+        <td>{{ 'Account Name' | translate }}:</td>
         <td fxLayout="row" fxLayoutAlign="start center">{{producer.account.account_name}}
           <mat-icon *ngIf="producer.validated">verified_user</mat-icon>
         </td>
