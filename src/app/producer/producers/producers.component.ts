@@ -52,7 +52,13 @@ export class ProducersComponent implements OnInit {
               }
             } else {
               if (position < 22) {
-                reward += 318;
+                reward += 1527.67;
+              } else if (position < 51)
+              {
+                if(percentageVotesRewarded >= 0.5)
+                { 
+                  reward += 160.40;
+                }
               }
               reward += percentageVotesRewarded * 200;
               if (reward < 100) {

@@ -9,5 +9,5 @@ export const environment = {
   showAds: false,
   tokensUrl: 'https://raw.githubusercontent.com/alacafe/ala-airdrops/master/tokens.json',
   tickerUrl: 'https://api.coinmarketcap.com/v2/ticker/1765/',
-  token: 'TLOS'
+  token: 'ALA'
 };

@@ -47,7 +47,13 @@ export class ProducerComponent implements OnInit {
         let percentageVotes = producer.total_votes / chainStatus.total_producer_vote_weight * 100;
         let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
         if (position < 22) {
-          reward += 318;
+          reward += 1527.67;
+        } else if (position < 51)
+        {
+          if(percentageVotesRewarded >= 0.5)
+          { 
+            reward += 160.40;
+          }
         }
         reward += percentageVotesRewarded * 200;
         if (percentageVotes * 200 < 100) {
