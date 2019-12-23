@@ -53,6 +53,10 @@ export class ProducersComponent implements OnInit {
             } else {
               if (position < 22) {
                 reward += 1527.67;
+                if(percentageVotesRewarded >= 0.5)
+                { 
+                  reward += 160.40;
+                }
               } else if (position < 51)
               {
                 if(percentageVotesRewarded >= 0.5)
@@ -60,7 +64,7 @@ export class ProducersComponent implements OnInit {
                   reward += 160.40;
                 }
               }
-              reward += percentageVotesRewarded * 200;
+              //reward += percentageVotesRewarded * 100;
               if (reward < 100) {
                 reward = 0;
               }

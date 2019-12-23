@@ -37,9 +37,9 @@ export class ProducerComponent implements OnInit {
         const index = producers.findIndex(producer => producer.owner === name);
         const votesToRemove = producers.reduce((acc, cur) => {
           const percentageVotes = cur.total_votes / chainStatus.total_producer_vote_weight * 100;
-          if (percentageVotes * 200 < 100) {
-            acc += parseFloat(cur.total_votes);
-          }
+          // if (percentageVotes * 200 < 100) {
+          //   acc += parseFloat(cur.total_votes);
+          // }
           return acc;
         }, 0);
         let position = parseInt(index) + 1;
@@ -48,6 +48,10 @@ export class ProducerComponent implements OnInit {
         let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
         if (position < 22) {
           reward += 1527.67;
+          if(percentageVotesRewarded >= 0.5)
+          { 
+            reward += 160.40;
+          }
         } else if (position < 51)
         {
           if(percentageVotesRewarded >= 0.5)
@@ -55,7 +59,7 @@ export class ProducerComponent implements OnInit {
             reward += 160.40;
           }
         }
-        reward += percentageVotesRewarded * 200;
+     //   reward += percentageVotesRewarded * 200;
         if (percentageVotes * 200 < 100) {
           reward = 0;
         }
