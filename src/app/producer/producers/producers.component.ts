@@ -43,40 +43,48 @@ export class ProducersComponent implements OnInit {
             let reward = 0;
             let percentageVotes = producer.total_votes / chainStatus.total_producer_vote_weight * 100;
             let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
-
-            if (environment.token === 'TLOS') {
-              if (position < 22) {
-                reward = 900;
-              } else if (position < 52) {
-                reward = 400;
-              }
-            } else {
-              if (position < 22) {
-                reward += 1527.67;
-                if(percentageVotesRewarded >= 0.5)
-                { 
-                  reward += 160.40;
-                }
-              } else if (position < 51)
+            console.log("producer: "+producer.owner+" producer bucket: "+producer.unpaid_blocks);
+            console.log("perblock_bucket: "+chainStatus.perblock_bucket);
+            // if (environment.token === 'TLOS') {
+            //   if (position < 22) {
+            //     reward = 900;
+            //   } else if (position < 52) {
+            //     reward = 400;
+            //   }
+            // } else {
+             // if (position < 22) {
+              reward += ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
+              let temp= 0;
+              temp=reward;
+              if(reward==0)
               {
-                if(percentageVotesRewarded >= 0.5)
-                { 
-                  reward += 160.40;
-                }
+                
               }
-              //reward += percentageVotesRewarded * 100;
-              if (reward < 100) {
-                reward = 0;
-              }
-            }
+               // if(percentageVotesRewarded >= 0.5)
+                //{ 
+                  //reward += 160.40;
+               // }
+              //} else if (position < 51)
+              //{
+                //if(percentageVotesRewarded >= 0.5)
+                //{ 
+                //  reward += 160.40;
+                //}
+             // }
+              // //reward += percentageVotesRewarded * 100;
+              // if (reward < 100) {
+              //   reward = 0;
+              // }
+            //}
 
             return {
               ...producer,
               position: position,
-              reward: reward.toFixed(0),
+              reward: temp.toFixed(4),
               votes: percentageVotes.toFixed(2),
-              numVotes: (producer.total_votes / this.calculateVoteWeight() / 10000).toFixed(0)
+              numVotes:(producer.total_votes / 10000)
             }
+           
           });
         })
       )),
@@ -92,6 +100,7 @@ export class ProducersComponent implements OnInit {
     let timestamp_epoch: number = 946684800000;
     let dates_: number = (Date.now() / 1000) - (timestamp_epoch / 1000);
     let weight_: number = Math.floor(dates_ / (86400 * 7)) / 52;  //86400 = seconds per day 24*3600
+    console.log("vote weight:= "+Math.pow(2,weight_));
     return Math.pow(2, weight_);
   }
 

@@ -1,10 +1,10 @@
 <div style="margin:10px;">
-  <mat-card>
-    <mat-card-title fxLayout="row" fxLayoutAlign="center center">
+   <!-- <mat-card>
+   <mat-card-title fxLayout="row" fxLayoutAlign="center center">
       <span fxFlex>{{ 'Account Tokens' | translate }}</span>
       <button mat-raised-button color="accent" (click)="add()">Custom Tokens</button>
     </mat-card-title>
-    <mat-card-content>
+    <mat-card-content> 
       <ng-container *ngIf="tokens; else loading">
         <table mat-table [dataSource]="tokens.value" *ngIf="!tokens.isError">
           <tr mat-header-row *matHeaderRowDef="tokensColumns"></tr>
@@ -47,5 +47,5 @@
         <app-spinner></app-spinner>
       </ng-template>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 </div>
