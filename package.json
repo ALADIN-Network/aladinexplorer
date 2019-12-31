@@ -1,11 +1,11 @@
 {
-  "name": "eos-explorer",
+  "name": "aladin-explorer",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "dev": "ng serve --port 80 --disable-host-check --watch",
+    "dev": "ng serve --disable-host-check --watch",
     "build": "node replace.build.js && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",

@@ -10,7 +10,7 @@ import {environment} from '../../../environments/environment';
 export class DashboardComponent implements OnInit {
 
   alaQuote$: Observable<boolean>;
-  showAds = environment.showAds;
+  //showAds = environment.showAds;
 
   constructor(
     private appService: AppService

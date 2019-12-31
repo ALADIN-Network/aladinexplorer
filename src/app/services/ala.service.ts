@@ -158,4 +158,26 @@ export class AlaService {
       map((result: any) => result.rows[0])
     );
   }
+  getOraclesTable() {
+    return from(this.ala.getTableRows({
+      json: true,
+      code: "alaio",
+      scope: "alaio",
+      table: "oracles",
+      limit: 1
+    })).pipe(
+      map((result: any) => result.rows[0])
+    );
+  }
+  getOraclesRewardTable() {
+    return from(this.ala.getTableRows({
+      json: true,
+      code: "alaio",
+      scope: "alaio",
+      table: "oraclereward",
+      limit: 1
+    })).pipe(
+      map((result: any) => result.rows[0])
+    );
+  }
 }

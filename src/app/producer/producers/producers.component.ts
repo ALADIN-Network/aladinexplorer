@@ -14,6 +14,9 @@ export class ProducersComponent implements OnInit {
   columnHeaders$: Observable<string[]> = of(PRODUCERS_COLUMNS);
   producers$: Observable<any[]>;
   chainStatus$: Observable<any>;
+  oracles$: Observable<any>;
+  oracleReward$: Observable<any>;
+  producers1$ : Observable<any>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -28,6 +31,35 @@ export class ProducersComponent implements OnInit {
       switchMap(() => this.alaService.getChainStatus()),
       share()
     );
+    console.log("this.chainStatus$", this.chainStatus$)
+    this.oracles$ = timer(0, 60000).pipe(
+      switchMap(() => this.alaService.getOraclesTable()),
+      share()
+    );
+    console.log("this.oracles$", this.oracles$)
+    this.oracleReward$ = timer(0, 60000).pipe(
+      switchMap(() => this.alaService.getOraclesRewardTable()),
+      share()
+    );
+    console.log("this.oracleReward$", this.oracleReward$)
+
+    // this.producers1$ = this.oracleReward$.pipe(
+    //   switchMap(oracleReward => this.alaService.getOraclesRewardTable().pipe(
+    //     map(producers1 => {
+    //       console.log(">>>>>>>>>>>",producers1);
+    //       return producers1.map((producer1, index) => {
+    //         var test = producers1.total_successful_requests;
+    //         console.log("test",test);
+    //         return {
+    //           ...producer1,
+    //         }
+    //       });
+    //     })
+    //   )),
+    //   share()
+    // );
+
+
     this.producers$ = this.chainStatus$.pipe(
       switchMap(chainStatus => this.alaService.getProducers().pipe(
         map(producers => {
@@ -41,54 +73,30 @@ export class ProducersComponent implements OnInit {
           return producers.map((producer, index) => {
             let position = parseInt(index) + 1;
             let reward = 0;
+            let oracleR = 0;
             let percentageVotes = producer.total_votes / chainStatus.total_producer_vote_weight * 100;
             let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
-            console.log("producer: "+producer.owner+" producer bucket: "+producer.unpaid_blocks);
-            console.log("perblock_bucket: "+chainStatus.perblock_bucket);
-            // if (environment.token === 'TLOS') {
-            //   if (position < 22) {
-            //     reward = 900;
-            //   } else if (position < 52) {
-            //     reward = 400;
-            //   }
-            // } else {
-             // if (position < 22) {
+           // console.log("producer: "+producer.owner+" producer bucket: "+producer.unpaid_blocks);
+           // console.log("perblock_bucket: "+chainStatus.perblock_bucket);
+          
               reward += ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
-              let temp= 0;
-              temp=reward;
-              if(reward==0)
-              {
-                
+              console.log("before wpay: ",reward);
+              if (percentageVotesRewarded>=0.5){
+                reward += 164.3835616;
               }
-               // if(percentageVotesRewarded >= 0.5)
-                //{ 
-                  //reward += 160.40;
-               // }
-              //} else if (position < 51)
-              //{
-                //if(percentageVotesRewarded >= 0.5)
-                //{ 
-                //  reward += 160.40;
-                //}
-             // }
-              // //reward += percentageVotesRewarded * 100;
-              // if (reward < 100) {
-              //   reward = 0;
-              // }
-            //}
-
+              console.log("after wpay: ",reward);
             return {
               ...producer,
               position: position,
-              reward: temp.toFixed(4),
+              reward: reward.toFixed(4),
               votes: percentageVotes.toFixed(2),
               numVotes:(producer.total_votes / 10000)
             }
            
           });
-        })
+        }),
       )),
-      share()
+      share(),
     );
   }
 
@@ -113,5 +121,6 @@ export const PRODUCERS_COLUMNS = [
   'url',
   'numVotes',
   'votes',
-  'reward'
+  'reward',
+  //'oracleReward'
 ];
