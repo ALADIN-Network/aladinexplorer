@@ -35,8 +35,12 @@
         <td>#{{producer.position}}</td>
       </tr>
       <tr *ngIf="producer">
-        <td>{{ 'Daily Reward' | translate }}:</td>
+        <td>{{ 'Daily Reward (bPay + wPay)' | translate }}:</td>
         <td>{{producer.reward}} ALA</td>
+      </tr>
+      <tr *ngIf="producer">
+        <td>{{ 'Location' | translate }}:</td>
+        <td>{{producer.abc}} </td>
       </tr>
       <!-- <tr *ngIf="producer">
         <td>

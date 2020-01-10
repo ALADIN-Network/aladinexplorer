@@ -4,6 +4,10 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap, share, catchError } from 'rxjs/operators';
 import { AlaService } from '../../services/ala.service';
 import { AppService } from '../../services/app.service';
+import countryCodeToFlag from "country-code-to-flag";
+import { getCountryName } from '../producers/countrycodes';
+
+var countries = require("i18n-iso-countries");
 
 @Component({
   templateUrl: './producer.component.html',
@@ -46,30 +50,24 @@ export class ProducerComponent implements OnInit {
         let reward = 0;
         let percentageVotes = producer.total_votes / chainStatus.total_producer_vote_weight * 100;
         let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
-    //     if (position < 22) {
-    //       reward += 1527.67;
-    //       if(percentageVotesRewarded >= 0.5)
-    //       { 
-    //         reward += 160.40;
-    //       }
-    //     } else if (position < 51)
-    //     {
-    //       if(percentageVotesRewarded >= 0.5)
-    //       { 
-    //         reward += 160.40;
-    //       }
-    //     }
-    //  //   reward += percentageVotesRewarded * 200;
-    //     if (percentageVotes * 200 < 100) {
-    //       reward = 0;
-    //     }
-    reward += ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
+        
+        let abc
+        abc = countries.numericToAlpha2(producer.location)
+        let xyz;
+        xyz = countryCodeToFlag(abc)
+        abc = getCountryName(abc)
+        // console.log(abc)
+        reward += ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
+        if (percentageVotesRewarded >= 0.5) {
+          reward += 164.3835616;
+        }
         return {
           ...producer,
           account: account,
           position: position,
           reward: reward.toFixed(4),
-          votes: percentageVotes.toFixed(2)
+          votes: percentageVotes.toFixed(2),
+          abc: abc
         }
       }),
       switchMap(producer => {

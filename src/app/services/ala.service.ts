@@ -193,7 +193,6 @@ export class AlaService {
       table: "requests"
     })).pipe(
       map((result: any) => {
-        console.log("result.rows", result.rows)
         return result.rows
       })
     );

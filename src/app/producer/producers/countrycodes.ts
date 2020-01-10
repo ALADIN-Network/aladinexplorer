@@ -230,7 +230,7 @@ var isoCountries = {
     'UA' : 'Ukraine',
     'AE' : 'United Arab Emirates',
     'GB' : 'United Kingdom',
-    'US' : 'United States',
+    'US' : 'United States of America',
     'UM' : 'United States Outlying Islands',
     'UY' : 'Uruguay',
     'UZ' : 'Uzbekistan',

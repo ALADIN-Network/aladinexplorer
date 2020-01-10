@@ -32,19 +32,19 @@ export class ProducersComponent implements OnInit {
     this.columnHeaders$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(
       map(result => result.matches ? PRODUCERS_COLUMNS.filter((c: any) => (c !== 'url' && c !== 'numVotes')) : PRODUCERS_COLUMNS)
     );
-    this.chainStatus$ = timer(0, 6000).pipe(
+    this.chainStatus$ = timer(0, 10000).pipe(
       switchMap(() => this.alaService.getChainStatus()),
       share()
     );
-    this.oracles$ = timer(0, 6000).pipe(
+    this.oracles$ = timer(0, 10000).pipe(
       switchMap(() => this.alaService.getOraclesTable()),
       share()
     );
-    this.oracleReward$ = timer(0, 6000).pipe(
+    this.oracleReward$ = timer(0, 10000).pipe(
       switchMap(() => this.alaService.getOraclesRewardTable()),
       share()
     );
-    this.info$ = timer(0, 6000).pipe(
+    this.info$ = timer(0, 10000).pipe(
       switchMap(() => this.alaService.getBPInfo()),
       share()
     );
@@ -73,14 +73,17 @@ export class ProducersComponent implements OnInit {
           oracleTable.map(test => {
             let test1 = producer.owner;
             if (test.producer === test1) {
-              console.log("oracle bucket ", chainStatus.oracle_bucket, typeof chainStatus.oracle_bucket);
-              console.log("sr ", test.successful_requests, typeof test.successful_requests);
-              console.log("tsr ", rewardTable.total_successful_requests, typeof rewardTable.total_successful_requests);
+              //console.log("oracle bucket ", chainStatus.oracle_bucket, typeof chainStatus.oracle_bucket);
+              //console.log("sr ", test.successful_requests, typeof test.successful_requests);
+              //console.log("tsr ", rewardTable.total_successful_requests, typeof rewardTable.total_successful_requests);
               let op = ((chainStatus.oracle_bucket * test.successful_requests) / rewardTable.total_successful_requests)
               op=(op/10000) - test.failed_requests
-              console.log("op: ", op)
+              //console.log("op: ", op)
               failed_request= test.failed_requests
-              console.log("failed_requests",failed_request)
+              //console.log("failed_requests",failed_request)
+              if(isNaN(op)){
+                return 0
+              }
               if (op === NaN) {
                 oracleR = 0
                 return oracleR
@@ -94,25 +97,25 @@ export class ProducersComponent implements OnInit {
           let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
 
           reward += ((chainStatus.perblock_bucket * producer.unpaid_blocks) / chainStatus.total_unpaid_blocks) / 10000;
-          console.log("alaio.bpay ", reward);
+          //console.log("alaio.bpay ", reward);
           if (percentageVotesRewarded >= 0.5) {
             reward += 164.3835616;
           }
           let abc
           abc = countries.numericToAlpha2(producer.location)
 
-          console.log("alaio.bpay+alaio.wpay", reward);
+          //console.log("alaio.bpay+alaio.wpay", reward);
           let xyz;
           xyz = countryCodeToFlag(abc)
           abc = getCountryName(abc)
-          console.log("Oracle Reward: NaN", oracleR)
-          oracleR = (oracleR === NaN) ? 0: oracleR;
-          console.log("Oracle Reward: ", oracleR)
+          //console.log("Oracle Reward: NaN", oracleR)
+          oracleR = (oracleR === NaN) ? oracleR: 0;
+          //console.log("Oracle Reward: ", oracleR)
           let totalReward
           totalReward = reward + oracleR
 
           // bp info
-          console.log(info.head_block_producer)
+          //console.log(info.head_block_producer)
 
           return {
             ...producer,
@@ -139,7 +142,7 @@ export class ProducersComponent implements OnInit {
     let timestamp_epoch: number = 946684800000;
     let dates_: number = (Date.now() / 1000) - (timestamp_epoch / 1000);
     let weight_: number = Math.floor(dates_ / (86400 * 7)) / 52;  //86400 = seconds per day 24*3600
-    //console.log("vote weight:= " + Math.pow(2, weight_));
+    ////console.log("vote weight:= " + Math.pow(2, weight_));
     return Math.pow(2, weight_);
   }
 
