@@ -55,6 +55,10 @@ export class AlaService {
     return defer(() => from(this.ala.getInfo({})));
   }
 
+  getBPInfo(): Observable<any> {
+    return this.ala.getInfo({});
+  }
+
   getDeferBlock(id: string | number): Observable<any> {
     return defer(() => from(this.ala.getBlock(id)));
   }
@@ -166,7 +170,6 @@ export class AlaService {
       table: "oracles"
     })).pipe(
       map((result: any) => {
-        console.log("result.rows", result.rows)
         return result.rows
       })
     );
