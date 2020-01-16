@@ -29,6 +29,7 @@ export class SearchComponent implements OnInit {
       switchMap(query => this.tryTransaction(query)),
       switchMap(query => this.tryBlockId(query)),
       switchMap(query => this.tryAccount(query)),
+      switchMap(query => this.tryidAccount(query)),
       tap(query => console.log('no result', query))
     );
   }
@@ -84,6 +85,23 @@ export class SearchComponent implements OnInit {
 
   private tryAccount(query: string): Observable<string> {
     if (query.length <= 12) {
+      return this.alaService.getDeferAccount(query).pipe(
+        catchError(() => of(null)),
+        switchMap(account => {
+          if (account) {
+            this.router.navigate(['/accounts', account.account_name], { replaceUrl: true });
+            return empty();
+          }
+          return of(query);
+        })
+      );
+    }
+    return of(query);
+  }
+
+  private tryidAccount(query: string): Observable<string> {
+    if (query.length <= 12) {
+      query = query + '.id.ala'
       return this.alaService.getDeferAccount(query).pipe(
         catchError(() => of(null)),
         switchMap(account => {

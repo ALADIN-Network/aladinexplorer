@@ -243,7 +243,8 @@ var isoCountries = {
     'EH' : 'Western Sahara',
     'YE' : 'Yemen',
     'ZM' : 'Zambia',
-    'ZW' : 'Zimbabwe'
+    'ZW' : 'Zimbabwe',
+    'Zt' : 'Country Not Specified'
 };
 
 export const getCountryName = (countryCode) =>{
