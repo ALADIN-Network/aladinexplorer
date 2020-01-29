@@ -20,11 +20,6 @@ export class SidenavComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
-  // goToLink(url: string){
-  //   console.log("url", url)
-  //   window.open(url, "_blank");
-  // }
-
   ngOnInit() {
     this.navs = [
       {

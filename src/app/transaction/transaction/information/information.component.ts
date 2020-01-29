@@ -8,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InformationComponent implements OnInit {
 
   @Input() transaction;
-
+  @Input() blockPay;
+  @Input() witnessPay;
+  @Input() oraclePay;
   constructor() { }
 
   ngOnInit() {
+    this.blockPay = this.transaction.traces[0].inline_traces.filter(traces => traces.act.data.from == 'alaio.bpay')
+    this.witnessPay = this.transaction.traces[0].inline_traces.filter(traces => traces.act.data.from == 'alaio.wpay')
+    this.oraclePay = this.transaction.traces[0].inline_traces.filter(traces => traces.act.data.from == 'alaio.opay')
   }
-
 }

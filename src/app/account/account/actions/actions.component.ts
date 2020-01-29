@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+// import { TransactionComponent } from '../../../transaction/transaction/transaction.component' ;
 
 @Component({
   selector: 'app-account-actions',
@@ -9,15 +10,19 @@ export class ActionsComponent implements OnChanges {
 
   @Input() actions;
   @Input() newActions;
+  // @Input() ngSwitch: any;
+  // @Input() transaction: TransactionComponent;
   @Output() onLoadMore = new EventEmitter<number>();
   actionsColumns = [
     'id',
     'blockId',
     'transactionId',
     'timestamp',
-    'name'
+    'action',
+    'data'
   ];
   accountActionSequence = 0;
+  sanchit ="sanchit"
 
   constructor() { }
 
@@ -29,6 +34,6 @@ export class ActionsComponent implements OnChanges {
     if (this.actions && !this.actions.isError && this.actions.value.length) {
       this.accountActionSequence = this.actions.value[this.actions.value.length - 1].account_action_seq;
     }
+    // console.log("aasasas",this.transaction.ngOnInit());
   }
-
 }

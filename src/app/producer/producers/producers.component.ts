@@ -73,14 +73,9 @@ export class ProducersComponent implements OnInit {
           oracleTable.map(test => {
             let test1 = producer.owner;
             if (test.producer === test1) {
-              //console.log("oracle bucket ", chainStatus.oracle_bucket, typeof chainStatus.oracle_bucket);
-              //console.log("sr ", test.successful_requests, typeof test.successful_requests);
-              //console.log("tsr ", rewardTable.total_successful_requests, typeof rewardTable.total_successful_requests);
               let op = ((chainStatus.oracle_bucket * test.successful_requests) / rewardTable.total_successful_requests)
               op=(op/10000) - test.failed_requests
-              //console.log("op: ", op)
               failed_request= test.failed_requests
-              //console.log("failed_requests",failed_request)
               if(isNaN(op)){
                 return 0
               }
@@ -96,27 +91,21 @@ export class ProducersComponent implements OnInit {
           let percentageVotes = producer.total_votes / chainStatus.total_producer_vote_weight * 100;
           let percentageVotesRewarded = producer.total_votes / (chainStatus.total_producer_vote_weight - votesToRemove) * 100;
 
-          reward += ((chainStatus.perblock_bucket * producer.unpaid_blocks) / chainStatus.total_unpaid_blocks) / 10000;
-          //console.log("alaio.bpay ", reward);
+          reward = ((chainStatus.perblock_bucket * producer.unpaid_blocks) / chainStatus.total_unpaid_blocks) / 10000;
           if (percentageVotesRewarded >= 0.5) {
-            reward += 164.3835616;
+            reward = reward + 164.3835616;
           }
           let abc
           abc = countries.numericToAlpha2(producer.location)
-
-          //console.log("alaio.bpay+alaio.wpay", reward);
+          if (typeof(abc) == 'undefined') {
+            abc='Zt'
+          }
           let xyz;
           xyz = countryCodeToFlag(abc)
           abc = getCountryName(abc)
-          //console.log("Oracle Reward: NaN", oracleR)
-          oracleR = (oracleR === NaN) ? oracleR: 0;
-          //console.log("Oracle Reward: ", oracleR)
+          oracleR = (oracleR === NaN) ? 0 : oracleR;
           let totalReward
           totalReward = reward + oracleR
-
-          // bp info
-          //console.log(info.head_block_producer)
-
           return {
             ...producer,
             position: position,

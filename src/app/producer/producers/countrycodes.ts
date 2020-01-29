@@ -244,7 +244,7 @@ var isoCountries = {
     'YE' : 'Yemen',
     'ZM' : 'Zambia',
     'ZW' : 'Zimbabwe',
-    'Zt' : 'Country Not Specified'
+    'Zt' : ''
 };
 
 export const getCountryName = (countryCode) =>{

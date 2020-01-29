@@ -53,13 +53,15 @@ export class ProducerComponent implements OnInit {
         
         let abc
         abc = countries.numericToAlpha2(producer.location)
+        if (typeof(abc) == 'undefined') {
+          abc='Zt'
+        }
         let xyz;
         xyz = countryCodeToFlag(abc)
         abc = getCountryName(abc)
-        // console.log(abc)
-        reward += ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
+        reward = ((chainStatus.perblock_bucket*producer.unpaid_blocks)/chainStatus.total_unpaid_blocks)/10000;
         if (percentageVotesRewarded >= 0.5) {
-          reward += 164.3835616;
+          reward = reward + 164.3835616;
         }
         return {
           ...producer,
