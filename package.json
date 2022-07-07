@@ -39,7 +39,7 @@
     "country-code-to-flag": "^0.1.2",
     "express": "^4.16.3",
     "i18n-iso-countries": "^4.3.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "ngx-json-viewer": "^2.3.1",
     "ngx-moment": "^3.1.0",
     "ngx-webstorage": "^2.0.1",
